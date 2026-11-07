@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>openGym-MCP</Name>
+  <Repository>ghcr.io/REPLACE_GITHUB_OWNER/opengym-mcp-docker:latest</Repository>
+  <Registry>https://github.com/REPLACE_GITHUB_OWNER/opengym-mcp-docker/pkgs/container/opengym-mcp-docker</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/REPLACE_GITHUB_OWNER/opengym-mcp-docker/issues</Support>
+  <Project>https://github.com/DuarteSantos8/openGym</Project>
+  <Overview>Standalone openGym MCP server over Streamable HTTP. Mount the existing openGym API data directory read-only; protect the /mcp endpoint with an API key. NOT an OAuth server.</Overview>
+  <Category>Tools: Utilities:</Category>
+  <WebUI></WebUI>
+  <TemplateURL></TemplateURL>
+  <Icon></Icon>
+  <ExtraParams>--security-opt=no-new-privileges:true</ExtraParams>
+  <PostArgs></PostArgs>
+  <CPUset></CPUset>
+  <DateInstalled></DateInstalled>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <Requires></Requires>
+  <Config Name="MCP HTTP port" Target="8000" Default="8000" Mode="tcp" Description="Streamable HTTP MCP endpoint is /mcp; /healthz is a gateway health check." Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+  <Config Name="openGym API data directory" Target="/opengym-data" Default="/mnt/user/appdata/opengym/data" Mode="ro" Description="HOST path containing db.json and state-*.json. Replace with your actual API volume host path." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/opengym/data</Config>
+  <Config Name="MCP API key" Target="SUPERGATEWAY_API_KEY" Default="" Mode="" Description="REQUIRED: long random secret; passed as Authorization: Bearer TOKEN (or X-API-Key)." Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="openGym profile ID" Target="OPENGYM_UID" Default="" Mode="" Description="Optional for single-profile installations; otherwise users[].id in db.json." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+</Container>

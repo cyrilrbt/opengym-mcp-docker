@@ -1,0 +1,14 @@
+services:
+  opengym-mcp:
+    image: ghcr.io/${GITHUB_OWNER:?Set GITHUB_OWNER in .env}/opengym-mcp-docker:latest
+    restart: unless-stopped
+    ports:
+      - "${MCP_BIND_IP:-127.0.0.1}:${MCP_PORT:-8000}:8000"
+    environment:
+      SUPERGATEWAY_API_KEY: ${MCP_API_KEY:?Set MCP_API_KEY in .env}
+      OPENGYM_UID: ${OPENGYM_UID:-}
+      OPENGYM_DATA: /opengym-data
+    volumes:
+      - ${OPENGYM_DATA_PATH:?Set OPENGYM_DATA_PATH in .env}:/opengym-data:ro
+    security_opt:
+      - no-new-privileges:true
